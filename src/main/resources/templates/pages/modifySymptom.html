@@ -31,6 +31,8 @@
 
 <form th:action="@{/create/saveSymptom}" method="post" th:object="${symptom}" id="symptomForm">
 
+    <input type="hidden" name="idSymptom" th:field="*{idSymptom}"/>
+
     <label for="symptomName">Nombre</label>
     <input type="text" name="symptomName" th:field="*{symptomName}"/>
     <br/>

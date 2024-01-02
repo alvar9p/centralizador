@@ -59,4 +59,9 @@ public class ListController {
         return "pages/listSymptoms";
     }
 
+    @GetMapping("/test")
+    public String testView(){
+        return "pages/test";
+    }
+
 }

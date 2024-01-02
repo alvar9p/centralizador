@@ -24,12 +24,13 @@
   </thead>
   <tbody>
   <tr th:each="symptoms : ${symptoms}">
-    <td th:text="${symptoms.id}"></td>
+    <td th:text="${symptoms.idSymptom}"></td>
     <td th:text="${symptoms.symptomName}"></td>
     <td th:text="${symptoms.cares}"></td>
     <td th:text="${symptoms.considerations}"></td>
-    <td>...</td>
-    <td>...</td>
+    <td><a th:href="@{/edit/symptom/} + ${symptoms.idSymptom}" th:text="Editar"/></td>
+    <td><a th:href="@{/delete/symptom/} + ${symptoms.idSymptom}" th:text="Eliminar"/></td>
+    
   </tbody>
 </table>
 

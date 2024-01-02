@@ -15,7 +15,7 @@ public class Symptom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Integer idSymptom;
 
     @Column(name = "sintoma")
     private String symptomName;

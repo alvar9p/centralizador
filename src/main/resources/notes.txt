@@ -16,6 +16,26 @@ listar/todosLosSintomas
 si la variable es null, que muestre un mensaje
 <td th:text="${miVariableEach.miAtributo}"!=null? ${miVariableEach.miAtributo} + ', + ${miVariableEach.miAtributoDos}: 'VACANT'">Guest</td>
 
+************************************************************************************************************************
+
+    <td><a th:href="@{/delete/symptom/} + ${symptoms.idSymptom}" th:text="Eliminar"/></td>
+    @GetMapping(path = "/symptom/{idSymptom}")
+    public String removeSymptom(Symptom symptom){
+        symptomService.deleteSymptom(symptom);
+        return "redirect:/list/symptoms";
+    }
+
+
+    <td><a th:href="@{/delete/symptom(idSymptom=${symptoms.idSymptom})}" th:text="Eliminar"/></td>
+    @GetMapping(path = "/symptom")
+    public String removeSymptom2(Symptom symptom){
+        symptomService.deleteSymptom(symptom);
+        return "redirect:/list/symptoms";
+    }
+
+************************************************************************************************************************
+
+
 Enfermedad:
 
 Contendría información sobre las enfermedades, como el nombre, descripción, etc.
