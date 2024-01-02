@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos de la Enfermedad</title>
+</head>
+<body>
+    
+    <h1>Datos de la Enfermedad</h1>
+    <a th:href="@{/}">Regresar</a>
+    <br/>
+    <br/>
+
+    <form th:action="@{/crear/guardarEnfermedad}" method="post" th:object="${enfermedad}">
+
+      <label for="codigo_enf">Codigo de la enfermedad:</label>
+      <input type="text" name="codigo_enf" th:field="*{codigoEnf}"/>
+      <br/>
+
+      <label for="nombre_enf">Nombre de la enfermedad:</label>
+      <input type="text" name="nombre_enf" th:field="*{nombreEnfermedad}"/>
+      <br/>
+
+      <label for="clasificacionEnfermedad">Tipo de notificación requerida:</label>
+      <select id="clasificacionEnfermedad" name="clasificacionEnfermedad" required>
+        <option value="">Selecciona una opción</option>
+        <option th:each="clasificacion : ${clasificaciones}" th:value="${clasificacion}" th:text="${clasificacion.label}"></option>
+      </select>
+      <br/>
+
+      <label for="tipoEnfermedad">Tipo de enfermedad:</label>
+      <select id="tipoEnfermedad" name="tipoEnfermedad" required>
+        <option value="">Selecciona una opción</option>
+        <option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.label}"></option>
+      </select>
+      <br/>
+
+      <label for="duracion_enf">Duración:</label>
+      <input type="text" name="duracion_enf" id="duracionEnf" th:field="*{duracionEnfermedad}" readonly/>
+      <br/>
+
+      <label for="cantidadEtapas">N° de etapas</label>
+      <select id="cantidadEtapas" th:field="*{etapasEnf.size}" onchange="generarFormulario()">
+          <option value="0">Seleccione...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+      </select>
+
+      <div id="formularioEtapas"></div>
+
+      <br/>
+      <br/>
+      <form>
+          <input type="submit" name="guardar" value="Guardar"/>
+      </form>
+      <br/>
+      <br/>
+    </form>
+
+    <script src="/formularioAgregar.js"></script>
+
+    <br/>
+
+    <form th:action="@{/index}" method="get">
+        <button type="submit">Volver a inicio</button>
+    </form>
+
+</body>
+</html>

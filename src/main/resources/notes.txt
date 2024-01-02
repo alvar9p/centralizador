@@ -1,0 +1,31 @@
+/index
+
+listar/todasLasEnfermedades
+listar/todasLasEtapas
+listar/listarEtapaSegunId
+listar/todosLosSintomas
+
+
+/crear/agregarEnfermedad
+
+/editar/{idEnf}
+
+/eliminar/{idEnf}
+
+
+si la variable es null, que muestre un mensaje
+<td th:text="${miVariableEach.miAtributo}"!=null? ${miVariableEach.miAtributo} + ', + ${miVariableEach.miAtributoDos}: 'VACANT'">Guest</td>
+
+Enfermedad:
+
+Contendría información sobre las enfermedades, como el nombre, descripción, etc.
+Etapa:
+
+Contendría información sobre las diferentes etapas de las enfermedades, como el nombre de la etapa, descripción, etc.
+Sintoma:
+
+Almacenaría información sobre los síntomas, como el nombre del síntoma, descripción, etc.
+AsociacionSintomaEnfermedad:
+
+Sería una tabla de asociación que conectaría las entidades anteriores. Contendría información sobre cómo los síntomas están asociados con enfermedades y en qué etapa. Además, podría incluir información adicional, como fechas de inicio y fin si es necesario.
+Este diseño te permitirá manejar las relaciones de manera eficiente y proporcionará la flexibilidad necesaria para representar la complejidad de la asociación entre síntomas, enfermedades y etapas. Recuerda ajustar los detalles según los requisitos específicos de tu aplicación y cómo planeas utilizar la información en tu sistema.

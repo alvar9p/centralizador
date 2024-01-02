@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Síntoma</title>
+
+    <script>
+        function addInput(containerId, fieldName) {
+            var container = document.getElementById(containerId);
+            var newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.name = fieldName + '[' + container.childElementCount + ']';
+            container.appendChild(document.createElement('br'));
+            container.appendChild(newInput);
+        }
+
+        // Agregar un campo de cuidado y una consideración iniciales al cargar la página
+        window.onload = function() {
+            addInput('caresContainer', 'cares');
+            addInput('considerationsContainer', 'considerations');
+        };
+    </script>
+</head>
+<body>
+
+<h1>Síntoma</h1>
+<a th:href="@{/}">Regresar</a>
+<br/>
+<br/>
+
+<form th:action="@{/create/saveSymptom}" method="post" th:object="${symptom}" id="symptomForm">
+
+    <label for="symptomName">Nombre</label>
+    <input type="text" name="symptomName" th:field="*{symptomName}"/>
+    <br/>
+
+    <label for="cares">Cuidados</label>
+    <div id="caresContainer">
+        <div th:each="care, iterStat : *{cares}">
+            <input type="text" th:field="*{cares[__${iterStat.index}__]}"/>
+            <br/>
+        </div>
+        <button type="button" onclick="addInput('caresContainer', 'cares')">Añadir otro cuidado</button>
+    </div>
+    <br/>
+
+    <label for="considerations">Consideraciones</label>
+    <div id="considerationsContainer">
+        <div th:each="consideration, iterStat : *{considerations}">
+            <input type="text" th:field="*{considerations[__${iterStat.index}__]}"/>
+            <br/>
+        </div>
+        <button type="button" onclick="addInput('considerationsContainer', 'considerations')">Añadir otra consideración</button>
+    </div>
+    <br/>
+
+    <input type="submit" name="save" value="Guardar"/>
+
+</form>
+
+<br/>
+
+<form th:action="@{/index}" method="get">
+    <button type="submit">Volver a inicio</button>
+</form>
+
+</body>
+</html>

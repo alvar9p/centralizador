@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintomas</title>
+</head>
+<body>
+
+<h2>Listado de Sintomas</h2>
+<br>
+
+<table border="1">
+  
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Síntoma</th>
+    <th>Cuidados</th>
+    <th>Consideraciones</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="symptoms : ${symptoms}">
+    <td th:text="${symptoms.id}"></td>
+    <td th:text="${symptoms.symptomName}"></td>
+    <td th:text="${symptoms.cares}"></td>
+    <td th:text="${symptoms.considerations}"></td>
+    <td>...</td>
+    <td>...</td>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<form th:action="@{/index}" method="get">
+    <button type="submit">Volver a inicio</button>
+</form>
+
+</body>
+</html>

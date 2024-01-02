@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de etapas segun ID</title>
+</head>
+<body>
+
+    <table border="1">
+
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Identificador - EtapaID</th>
+          <th>Descripcion</th>
+          <th>Duracion</th>
+          <th>Prueba ID FK</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="etapa : ${etapas}">
+          <td th:text="${etapa.idEtapa}">asd</td>
+          <td th:text="${etapa.nombreEtapa}">asd</td>
+          <td th:text="${etapa.descripcionEtapa}">asd</td>
+          <td th:text="${etapa.duracionEtapa}">asd</td>
+          <td th:text="${etapa.enfermedad.idEnf}">asd</td>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <form th:action="@{/index}" method="get">
+        <button type="submit">Volver a inicio</button>
+    </form>
+</body>
+</html>

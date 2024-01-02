@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal</title>
+</head>
+<body>
+
+<h1>Pagina de inicio</h1>
+
+<br><a th:href="@{/create/symptom}">Agregar un nuevo síntoma</a>
+<br>
+<a th:href="@{/list/symptoms}">Listar solo sintomas</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<a th:href="@{/create/agregarEnfermedad}">Agregar una nueva enfermedad</a>
+<br>
+
+<br>
+<a th:href="@{/list/diseases}">Listar solo enfermedades</a>
+<br>
+<br>
+<a th:href="@{/list/todasLasEtapas}">Listar solo etapas</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a th:href="@{/listar/listarEtapaSegunId}">Listar etapas segun ID enfermedad</a>
+</body>
+</html>
