@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.service;
 
-import cl.ipp.centralizador.model.Disease.Etapa;
+import cl.ipp.centralizador.model.disease.Etapa;
 import cl.ipp.centralizador.repository.EtapaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

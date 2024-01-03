@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.service;
 
-import cl.ipp.centralizador.model.Disease.Symptom;
+import cl.ipp.centralizador.model.disease.Symptom;
 import cl.ipp.centralizador.repository.SymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

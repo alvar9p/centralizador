@@ -1,6 +1,6 @@
-package cl.ipp.centralizador.model.Disease;
+package cl.ipp.centralizador.model.disease;
 
-import cl.ipp.centralizador.model.Disease.enums.EtapaID;
+import cl.ipp.centralizador.model.disease.enums.EtapaID;
 import lombok.*;
 
 import javax.persistence.*;

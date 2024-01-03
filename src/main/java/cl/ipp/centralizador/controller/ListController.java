@@ -1,8 +1,8 @@
 package cl.ipp.centralizador.controller;
 
-import cl.ipp.centralizador.model.Disease.Enfermedad;
-import cl.ipp.centralizador.model.Disease.Etapa;
-import cl.ipp.centralizador.model.Disease.Symptom;
+import cl.ipp.centralizador.model.disease.Enfermedad;
+import cl.ipp.centralizador.model.disease.Etapa;
+import cl.ipp.centralizador.model.disease.Symptom;
 import cl.ipp.centralizador.service.EnfermedadService;
 import cl.ipp.centralizador.service.EtapaService;
 import cl.ipp.centralizador.service.SymptomService;

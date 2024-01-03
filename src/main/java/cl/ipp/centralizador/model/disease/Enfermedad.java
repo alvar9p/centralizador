@@ -1,7 +1,7 @@
-package cl.ipp.centralizador.model.Disease;
+package cl.ipp.centralizador.model.disease;
 
-import cl.ipp.centralizador.model.Disease.enums.Clasificacion;
-import cl.ipp.centralizador.model.Disease.enums.Tipo;
+import cl.ipp.centralizador.model.disease.enums.Clasificacion;
+import cl.ipp.centralizador.model.disease.enums.Tipo;
 import lombok.*;
 
 import javax.persistence.*;

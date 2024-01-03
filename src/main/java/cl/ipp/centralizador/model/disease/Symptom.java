@@ -1,4 +1,4 @@
-package cl.ipp.centralizador.model.Disease;
+package cl.ipp.centralizador.model.disease;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package cl.ipp.centralizador.model.Disease.enums;
+package cl.ipp.centralizador.model.disease.enums;
 
 public enum EtapaID {
     ETAPA_01,

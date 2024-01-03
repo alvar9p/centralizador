@@ -1,11 +1,11 @@
 package cl.ipp.centralizador.controller;
 
-import cl.ipp.centralizador.model.Disease.Enfermedad;
-import cl.ipp.centralizador.model.Disease.Etapa;
-import cl.ipp.centralizador.model.Disease.Symptom;
-import cl.ipp.centralizador.model.Disease.enums.Clasificacion;
-import cl.ipp.centralizador.model.Disease.enums.EtapaID;
-import cl.ipp.centralizador.model.Disease.enums.Tipo;
+import cl.ipp.centralizador.model.disease.Enfermedad;
+import cl.ipp.centralizador.model.disease.Etapa;
+import cl.ipp.centralizador.model.disease.Symptom;
+import cl.ipp.centralizador.model.disease.enums.Clasificacion;
+import cl.ipp.centralizador.model.disease.enums.EtapaID;
+import cl.ipp.centralizador.model.disease.enums.Tipo;
 import cl.ipp.centralizador.service.EnfermedadService;
 import cl.ipp.centralizador.service.EtapaService;
 import cl.ipp.centralizador.service.SymptomService;
@@ -13,13 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/create")

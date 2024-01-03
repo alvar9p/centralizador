@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.controller;
 
-import cl.ipp.centralizador.model.Disease.*;
+import cl.ipp.centralizador.model.disease.*;
 import cl.ipp.centralizador.service.EnfermedadService;
 import cl.ipp.centralizador.service.EtapaService;
 import org.springframework.beans.factory.annotation.Autowired;
