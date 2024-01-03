@@ -4,23 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del Síntoma</title>
-
-    <script>
-        function addInput(containerId, fieldName) {
-            var container = document.getElementById(containerId);
-            var newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.name = fieldName + '[' + container.childElementCount + ']';
-            container.appendChild(document.createElement('br'));
-            container.appendChild(newInput);
-        }
-
-        // Agregar un campo de cuidado y una consideración iniciales al cargar la página
-        window.onload = function() {
-            addInput('caresContainer', 'cares');
-            addInput('considerationsContainer', 'considerations');
-        };
-    </script>
+    <script th:src="@{/functions.js}"></script>
 </head>
 <body>
 
@@ -38,24 +22,24 @@
     <br/>
 
     <label for="cares">Cuidados</label>
+    <button type="button" id="caresBtn">+</button>
     <div id="caresContainer">
         <div th:each="care, iterStat : *{cares}">
             <input type="text" th:field="*{cares[__${iterStat.index}__]}"/>
+            <button type="button" onclick="eliminarCampo(this)">-</button>
             <br/>
         </div>
-        <button type="button" onclick="addInput('caresContainer', 'cares')">Añadir otro cuidado</button>
     </div>
-    <br/>
 
     <label for="considerations">Consideraciones</label>
+    <button type="button" id="considerationsBtn">+</button>
     <div id="considerationsContainer">
         <div th:each="consideration, iterStat : *{considerations}">
             <input type="text" th:field="*{considerations[__${iterStat.index}__]}"/>
+            <button type="button" onclick="eliminarCampo(this)">-</button>
             <br/>
         </div>
-        <button type="button" onclick="addInput('considerationsContainer', 'considerations')">Añadir otra consideración</button>
     </div>
-    <br/>
 
     <input type="submit" name="save" value="Guardar"/>
 
