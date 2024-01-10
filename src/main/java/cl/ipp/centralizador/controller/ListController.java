@@ -64,4 +64,11 @@ public class ListController {
         return "pages/test";
     }
 
+
+    // *************************** Test index ***************************
+    @GetMapping("index")
+    public String testIndex(){
+        return "pages/index";
+    }
+
 }

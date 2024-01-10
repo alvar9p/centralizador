@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<footer  th:fragment="footer">
+    <p>Texto para el footer</p>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <a th:href="@{/(lang=es)}">ES</a>
+                |
+                <a th:href="@{/(lang=en)}">EN</a>
+                <p th:text="#{template.title}"></p>
+            </div>
+        </div>
+    </div>
+</footer>

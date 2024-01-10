@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Título</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <!-- Navbar -->
+            <aside>
+                <div th:replace="pages/common/sidebar :: sidebar"></div>
+            </aside>
+        </div>
+
+        <div class="col-10">
+
+            <header class="row">
+                <div th:replace="pages/common/header :: header">
+                    <h1>Header</h1>
+                    <p>12 Columnas</p>
+                    <p th:text="#{template.title}"></p>
+                </div>
+            </header>
+        </div>
+
+        <div class="col-12">
+            <div th:replace="pages/common/footer :: footer" class="col">
+                <p>FOOOTERRR</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <header class="row">
+        <div th:replace="pages/common/header :: header" class="col">
+            <h1>Header</h1>
+            <p>12 Columnas</p>
+            <p th:text="#{template.title}">asdasdsa</p>
+        </div>
+    </header> --> 
+
+    <!-- Contenedor main -->
+    <!-- <section class="contenedor-main row align-items-center">
+
+        <aside class="col-md-2">
+            <div th:replace="pages/common/sidebar :: sidebar"></div>
+        </aside>
+
+        <main class="col-md-10">
+            <h2>MAIN</h2>
+            <p class="d-none d-md-block">8 Columnas</p>
+            <p class="d-block d-md-none">12 Columnas</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta incidunt earum nesciunt quam, facilis vero cupiditate, tenetur harum excepturi sunt sequi reiciendis expedita, molestias id? Autem deleniti non cum quos!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet dignissimos facilis nesciunt, nam labore commodi laborum voluptate. Ipsa, cumque alias! Ipsum dolorem laboriosam deserunt quo odit nemo provident omnis iusto.</p>
+        </main>
+
+    </section>
+
+    <footer class="row">
+        <div th:replace="pages/common/footer :: footer" class="col">
+            <p>FOOOTERRR</p>
+        </div>
+    </footer> -->
+</div>
+
+<script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
