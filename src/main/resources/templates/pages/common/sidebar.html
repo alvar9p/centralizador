@@ -1,18 +1,18 @@
 <sidebar th:fragment="sidebar">
-
-  <div class="container" style="height: 1000px">
+  <div id="container-sidebar" class="container">
     <div class="row">
       <div class="col">
-
         <ul class="nav flex-column">
           <!-- Logo + texto del Sidebar -->
           <div class="row mt-4">
             <div class="col-1"></div>
             <div class="col-4 text-center">
-              <figure class="figure">
-                <img class="img-fluid rounded" th:src="@{/img/oms-emblem.png}" alt="imagen" height="60px"
-                  width="60px" />
-              </figure>
+              <a href="/index">
+                <figure class="figure">
+                  <img class="img-fluid rounded" th:src="@{/img/green-logo.png}" alt="imagen" height="80px"
+                    width="80px" />
+                </figure>
+              </a>
             </div>
             <div class="col-7">
               <div class="text-center">
@@ -21,111 +21,55 @@
             </div>
             <hr />
           </div>
-          <!-- Termina el logo + texto, con hr -->
 
-
-          <!-- Contenedor con todo el menú de navegación -->
-          <div class="flex-shrink-0 p-3 bg-none">
-            <ul class="list-unstyled ps-0">
-              <!-- Síntomas -->
-              <li class="text-start">
-                <!-- Icono primero -->
-                <!-- Ambulancia -->
-                <i class="fa fa-ambulance" aria-hidden="true"></i>
-                <button th:text="#{sidebar.symptom.title}" class="btn btn-toggle align-items-center rounded collapsed"
-                  data-bs-toggle="collapse" data-bs-target="#symptom-collapse" aria-expanded="true"></button>
-                <div class="collapse justify-content-center" id="symptom-collapse">
-                  <!-- Listado de los síntomas -->
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li>
-                      <a href="#" class="link-dark rounded" th:text="#{sidebar.symptom.list}"></a>
-                    </li>
-                    <li>
-                      <a href="#" class="link-dark rounded" th:text="#{sidebar.symptom.add}"></a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-              <!-- Link N#2-->
-              <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                  data-bs-target="#dashboard-collapse" aria-expanded="false">
-                  Dashboard
-                </button>
-                <div class="collapse" id="dashboard-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">Overview</a></li>
-                    <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                    <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                    <li><a href="#" class="link-dark rounded">Annually</a></li>
-                  </ul>
-                </div>
-              </li>
-
-              <!-- 
-              <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                  Orders
-                </button>
-                <div class="collapse" id="orders-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">New</a></li>
-                    <li><a href="#" class="link-dark rounded">Processed</a></li>
-                    <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                    <li><a href="#" class="link-dark rounded">Returned</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="border-top my-3"></li>
-              <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                  Account
-                </button>
-                <div class="collapse" id="account-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">New...</a></li>
-                    <li><a href="#" class="link-dark rounded">Profile</a></li>
-                    <li><a href="#" class="link-dark rounded">Settings</a></li>
-                    <li><a href="#" class="link-dark rounded">Sign out</a></li>
-                  </ul>
-                </div>
-              </li> -->
-            </ul>
-          </div>
-
-          <!-- <li>
-            <a
-              href="#disease-list-1"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              aria-expanded="false"
-              aria-controls="disease-list-1"
-            >
-              <p th:text="'Disease-thymeleaf'"></p>
-            </a>
-
-            <div class="collapse mt-1" id="disease-list-1">
-              <div class="card">
-                <div class="card-body bg-none">
-                  <h2 class="card-title">Titulo</h2>
-                  <p class="card-text">
-                    <a href="$">asdasdasd</a>
-                  </p>
-                </div>
+          <!--Imagen usuario + username -->
+          <div class="row mt-0">
+            <div class="col-2"></div>
+            <div class="col-3 text-center">
+              <a href="/index">
+                <figure class="figure">
+                  <img class="img-fluid rounded" th:src="@{/img/oms-emblem.png}" alt="imagen" height="50px"
+                    width="50px" />
+                </figure>
+              </a>
+            </div>
+            <div class="col-6 mt-3">
+              <div class="text-center">
+                <h6 th:text="#{sidebar.username}"></h6>
               </div>
             </div>
-          </li> 
+            <div class="col-1"></div>
+            <hr />
+          </div>
 
-          <li><a href="#" class="nav-link">Prueba #2</a></li> -->
+          <!-- Test botones -->
+          <div class="row mt-3">
+            <ul class="list-group">
+              <!-- Sintomas -->
+              <a href="#" class="list-group-item list-group-item-action list-group-item-success"
+                data-bs-toggle="collapse" data-bs-target="#symptom-collapse">
+                <i class="fa fa-ambulance" aria-hidden="true"></i>
+                &nbsp;
+                <!-- Espacio en blanco -->
+                <span th:text="#{sidebar.symptom.title}"></span>
+              </a>
+              <div class="collapse justify-content-center" id="symptom-collapse">
+                <!-- Listado de los síntomas -->
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li>
+                    <a href="/list/symptoms" class="link-dark rounded btn-toggle" th:text="#{sidebar.symptom.list}"></a>
+                  </li>
+
+                  <li>
+                    <a href="/create/symptom" class="link-dark rounded btn-toggle" th:text="#{sidebar.symptom.add}"></a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- ************************* -->
+            </ul>
+          </div>
         </ul>
-
-
-
-
-
-
-
       </div>
     </div>
   </div>

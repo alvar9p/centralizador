@@ -64,13 +64,6 @@ public class CreateController {
 
     @GetMapping(path = "/symptom")
     public String addSymptom(Symptom symptom){
-
-        /*Symptom symptoms = new Symptom("Nombre del Síntoma",
-                Arrays.asList("Cuidado 1", "Cuidado 2", "Cuidado 3"),
-                Arrays.asList("Consideración 1", "Consideración 2", "Consideración 3"));
-
-        symptomService.createSymptom(symptoms);*/
-
         return "pages/modifySymptom";
     }
 

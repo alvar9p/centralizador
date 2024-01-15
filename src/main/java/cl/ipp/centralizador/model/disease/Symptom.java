@@ -20,17 +20,13 @@ public class Symptom {
     @Column(name = "sintoma")
     private String symptomName;
 
-    @ElementCollection
-    @CollectionTable(name = "care", joinColumns = @JoinColumn(name = "symptom_id"))
-    @Column(name = "care")
-    private List<String> cares;
+    @Column(name = "cares")
+    private String cares;
 
-    @ElementCollection
-    @CollectionTable(name = "consideration", joinColumns = @JoinColumn(name = "symptom_id"))
-    @Column(name = "consideration")
-    private List<String> considerations;
+    @Column(name = "considerations")
+    private String considerations;
 
-    public Symptom(String symptomName, List<String> cares, List<String> considerations) {
+    public Symptom(String symptomName, String cares, String considerations) {
         this.symptomName = symptomName;
         this.cares = cares;
         this.considerations = considerations;

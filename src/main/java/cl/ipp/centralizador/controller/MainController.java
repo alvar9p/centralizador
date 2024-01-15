@@ -12,4 +12,9 @@ public class MainController {
     public String index(){
         return "index";
     }
+
+    @GetMapping(path = "/dashboard")
+    public String dashboard(){
+        return "pages/dashboard";
+    }
 }

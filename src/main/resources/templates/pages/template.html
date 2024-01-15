@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <aside>
+          <div th:replace="pages/common/sidebar :: sidebar"></div>
+        </aside>
+      </div>
+
+      <div class="col-9">
+        <header class="row">
+          <div th:replace="pages/common/header :: header">
+            <p th:text="#{template.title}"></p>
+          </div>
+        </header>
+
+        <div class="col-12 mt-5">
+          <!-- Texto acá -->
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+  <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>
