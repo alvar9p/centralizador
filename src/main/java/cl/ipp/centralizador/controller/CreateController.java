@@ -2,19 +2,24 @@ package cl.ipp.centralizador.controller;
 
 import cl.ipp.centralizador.model.disease.Enfermedad;
 import cl.ipp.centralizador.model.disease.Etapa;
+import cl.ipp.centralizador.model.disease.Stage;
 import cl.ipp.centralizador.model.disease.Symptom;
-import cl.ipp.centralizador.model.disease.enums.Clasificacion;
-import cl.ipp.centralizador.model.disease.enums.EtapaID;
-import cl.ipp.centralizador.model.disease.enums.Tipo;
+import cl.ipp.centralizador.model.disease.enums.Clasification;
+import cl.ipp.centralizador.model.disease.enums.StageID;
+import cl.ipp.centralizador.model.disease.enums.Tipe;
+import cl.ipp.centralizador.repository.SymptomRepository;
 import cl.ipp.centralizador.service.EnfermedadService;
 import cl.ipp.centralizador.service.EtapaService;
+import cl.ipp.centralizador.service.StageService;
 import cl.ipp.centralizador.service.SymptomService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/create")
@@ -31,11 +36,17 @@ public class CreateController {
     @Autowired
     private SymptomService symptomService;
 
+    @Autowired
+    private StageService stageService;
+
+    @Autowired
+    private SymptomRepository symptomRepository;
+
     @GetMapping(path = "/agregarEnfermedad")
     public String agregarEnfermedad(Enfermedad enfermedad, Etapa etapa, Model model){
-        model.addAttribute("clasificaciones", Clasificacion.values());
-        model.addAttribute("etapas", EtapaID.values());
-        model.addAttribute("tipos", Tipo.values());
+        model.addAttribute("clasificaciones", Clasification.values());
+        model.addAttribute("etapas", StageID.values());
+        model.addAttribute("tipos", Tipe.values());
         return "modificarEnfermedad";
     }
 
@@ -71,6 +82,46 @@ public class CreateController {
     public String saveSymptom(Symptom symptom){
         symptomService.createSymptom(symptom);
         return "redirect:/list/symptoms";
+    }
+
+    // *************************** ENFERMEDADES ***************************
+
+    @GetMapping(path = "/getCaresAndConsiderations/{id}")
+    @ResponseBody
+    public SymptomResponse obtenerCuidadosYConsideraciones(@PathVariable Integer id) {
+        Symptom symptom = symptomRepository.findById(id).orElse(null);
+
+        if (symptom != null) {
+            return new SymptomResponse(symptom.getCares(), symptom.getConsiderations());
+        }else {
+            return new SymptomResponse("No se encontró el síntoma.", "");
+        }
+    }
+
+
+    @GetMapping(path = "/disease")
+    public String addDisease(Stage stage, Model model){
+        model.addAttribute("clasifications", Clasification.values());
+        model.addAttribute("stages", StageID.values());
+        model.addAttribute("tipes", Tipe.values());
+
+        List<Symptom> symptoms = (List<Symptom>) symptomService.listSymptoms();
+        model.addAttribute("symptoms", symptoms);
+
+        return "pages/modifyDisease";
+    }
+
+    @PostMapping(path = "/saveStage")
+    public String saveStage(Stage stage){
+        stageService.createStage(stage);
+        return "redirect:/list/symptoms";
+    }
+
+    @Data
+    @AllArgsConstructor
+    private static class SymptomResponse {
+        private String cares;
+        private String considerations;
     }
 
 }

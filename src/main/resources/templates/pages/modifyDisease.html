@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <aside>
+          <div th:replace="pages/common/sidebar :: sidebar"></div>
+        </aside>
+      </div>
+
+      <div class="col-9">
+        <header class="row">
+          <div th:replace="pages/common/header :: header">
+            <p th:text="#{template.title}"></p>
+          </div>
+        </header>
+
+          <div class="col-12 mt-5">
+
+            <form th:action="@{/create/saveStage}" method="post" th:object="${stage}">
+
+              <div class="row">
+                <div class="col-7">
+
+                  <div class="form-floating mb-3">
+                    <input class="form-control" type="text" name="stageDesc" th:field="*{stageIdentifier}" />
+                    <label for="stageDesc">Nombre</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control" type="text" name="stageDesc" th:field="*{stageDesc}" />
+                    <label for="stageDesc">Descripcion</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input class="form-control" type="text" name="stageDuration" th:field="*{duration}" />
+                    <label for="stageDuration">Duracion total</label>
+                  </div>
+
+                </div>
+
+                <div class="col-5">
+                  <!-- Acá va el menu desplegable que tiene los sintomas -->
+                  <div class="input-group mt-3 text-center">
+                    <label for="symptomName" class="input-group-text">Síntoma</label>
+                    <select id="symptomName" name="symptomName" required class="form-select">
+                      <option value="">Selecciona un síntoma...</option>
+                      <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}" th:text="${symptom.symptomName}"></option>
+                    </select>
+                  </div>
+
+
+                  <!-- Not ready yet -->
+                  <div>
+                    <label for="cares">Cuidados:</label>
+                    <span id="cares"></span>
+                  </div>
+
+                  <div>
+                    <label for="considerations">Consideraciones:</label>
+                    <span id="considerations"></span>
+                  </div>
+
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" th:text="#{template.save}"></button>
+
+            </form>
+
+
+          </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+  <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/js/functions.js}"></script>
+</body>
+
+</html>

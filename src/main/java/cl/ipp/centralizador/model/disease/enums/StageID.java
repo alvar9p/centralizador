@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.model.disease.enums;
 
-public enum EtapaID {
+public enum StageID {
     ETAPA_01,
     ETAPA_02,
     ETAPA_03,

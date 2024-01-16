@@ -2,7 +2,7 @@ package cl.ipp.centralizador.model.disease.enums;
 
 import lombok.Getter;
 
-public enum Clasificacion {
+public enum Clasification {
     INMEDIATA("Notificación inmediata"),
     DIARIA("Notificación diaria"),
     CENTINELA("Notificación en centros centinelas");
@@ -10,7 +10,7 @@ public enum Clasificacion {
     @Getter
     private final String label;
 
-    Clasificacion(String label) {
+    Clasification(String label) {
         this.label = label;
     }
 }

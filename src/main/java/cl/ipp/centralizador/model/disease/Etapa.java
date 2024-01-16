@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.model.disease;
 
-import cl.ipp.centralizador.model.disease.enums.EtapaID;
+import cl.ipp.centralizador.model.disease.enums.StageID;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +22,7 @@ public class Etapa {
     private Enfermedad enfermedad;
 
     @Column(name = "nombre_etapa")
-    private EtapaID nombreEtapa;
+    private StageID nombreEtapa;
 
     @Column(name = "nombre_identif")
     private String nombreIdentificador;
@@ -33,13 +33,13 @@ public class Etapa {
     @Column(name = "duracion_etapa")
     private int duracionEtapa;
 
-    public Etapa(EtapaID nombreEtapa, String descripcionEtapa, int duracionEtapa) {
+    public Etapa(StageID nombreEtapa, String descripcionEtapa, int duracionEtapa) {
         this.nombreEtapa = nombreEtapa;
         this.descripcionEtapa = descripcionEtapa;
         this.duracionEtapa = duracionEtapa;
     }
 
-    public Etapa(EtapaID nombreEtapa, String nombreIdentificador, String descripcionEtapa, int duracionEtapa) {
+    public Etapa(StageID nombreEtapa, String nombreIdentificador, String descripcionEtapa, int duracionEtapa) {
         this.nombreEtapa = nombreEtapa;
         this.nombreIdentificador = nombreIdentificador;
         this.descripcionEtapa = descripcionEtapa;

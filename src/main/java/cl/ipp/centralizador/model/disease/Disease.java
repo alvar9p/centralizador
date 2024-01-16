@@ -2,7 +2,9 @@ package cl.ipp.centralizador.model.disease;
 
 import cl.ipp.centralizador.model.disease.enums.Clasification;
 import cl.ipp.centralizador.model.disease.enums.Tipe;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(schema = "Enfermedad")
-public class Enfermedad {
+@Table(schema = "Disease")
+public class Disease {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +41,7 @@ public class Enfermedad {
     private List<Etapa> etapasEnf = new ArrayList<>();
 
     // Enfermedad sin Etapas
-    public Enfermedad(String codigoEnf, String nombreEnfermedad, Clasification clasificationEnfermedad, Tipe tipeEnfermedad, Integer duracionEnfermedad) {
+    public Disease(String codigoEnf, String nombreEnfermedad, Clasification clasificationEnfermedad, Tipe tipeEnfermedad, Integer duracionEnfermedad) {
         this.codigoEnf = codigoEnf;
         this.nombreEnfermedad = nombreEnfermedad;
         this.clasificationEnfermedad = clasificationEnfermedad;
@@ -48,8 +50,8 @@ public class Enfermedad {
     }
 
     // Enfermedad con Etapas
-    public Enfermedad(String codigoEnf, String nombreEnfermedad, Clasification clasificationEnfermedad,
-                      Tipe tipeEnfermedad, Integer duracionEnfermedad, List<Etapa> etapasEnf) {
+    public Disease(String codigoEnf, String nombreEnfermedad, Clasification clasificationEnfermedad,
+                   Tipe tipeEnfermedad, Integer duracionEnfermedad, List<Etapa> etapasEnf) {
         this.codigoEnf = codigoEnf;
         this.nombreEnfermedad = nombreEnfermedad;
         this.clasificationEnfermedad = clasificationEnfermedad;
