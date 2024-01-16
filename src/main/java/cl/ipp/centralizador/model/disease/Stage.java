@@ -19,9 +19,9 @@ public class Stage {
     @Column(name = "id_stage")
     private Integer idStage;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "disease_id_enf") // Nombre de la columna de la clave externa
-    private Disease disease;*/
+    private Disease disease;
 
     @Column(name = "stage_name")
     private StageID stageID;
