@@ -50,6 +50,15 @@ public class Stage {
         this.duration = duration;
     }
 
+    public Stage(StageID stageID, String stageIdentifier, String stageDesc, int duration) {
+        this.stageID = stageID;
+        this.stageIdentifier = stageIdentifier;
+        this.stageDesc = stageDesc;
+        this.duration = duration;
+    }
+
+
+
 /*@Override
     public int hashCode() {
         final int prime = 31;

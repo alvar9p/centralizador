@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <aside>
+        <div th:replace="pages/common/sidebar :: sidebar"></div>
+      </aside>
+    </div>
+
+    <div class="col-9">
+      <header class="row">
+        <div th:replace="pages/common/header :: header">
+          <p th:text="#{template.title}"></p>
+        </div>
+      </header>
+
+      <div class="col-12 mt-5">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr class="table-primary">
+              <!-- <th>stageID</th> | Etapa? -->
+              <th th:text="#{stage.name}"></th>
+              <th th:text="#{stage.desc}"></th>
+              <th th:text="#{stage.duration}"></th>
+              <th th:text="#{symptom.name}"></th>
+              <th th:text="#{symptom.cares}"></th>
+              <th th:text="#{symptom.considerations}"></th>
+              <th th:text="#{template.edit}"></th>
+              <th th:text="#{template.delete}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stage : ${stages}">
+              <!-- <td th:text="${stage.stageID}"></td> -->
+              <td th:text="${stage.stageIdentifier}"></td>
+              <td th:text="${stage.stageDesc}"></td>
+              <td th:text="${stage.duration}"></td>
+              <td th:text="${stage.symptomName}"></td>
+              <td th:text="${stage.symptomCare}"></td>
+              <td th:text="${stage.symptomConsideration}"></td>
+              <td><a th:href="@{/edit/stage/} + ${stage.idStage}" th:text="#{template.edit}"/></td>
+              <td><a th:href="@{/delete/stage/} + ${stage.idStage}" th:text="#{template.delete}"/></td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

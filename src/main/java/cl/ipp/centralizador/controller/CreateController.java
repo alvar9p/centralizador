@@ -1,17 +1,11 @@
 package cl.ipp.centralizador.controller;
 
-import cl.ipp.centralizador.model.disease.Enfermedad;
-import cl.ipp.centralizador.model.disease.Etapa;
-import cl.ipp.centralizador.model.disease.Stage;
-import cl.ipp.centralizador.model.disease.Symptom;
+import cl.ipp.centralizador.model.disease.*;
 import cl.ipp.centralizador.model.disease.enums.Clasification;
 import cl.ipp.centralizador.model.disease.enums.StageID;
 import cl.ipp.centralizador.model.disease.enums.Tipe;
 import cl.ipp.centralizador.repository.SymptomRepository;
-import cl.ipp.centralizador.service.EnfermedadService;
-import cl.ipp.centralizador.service.EtapaService;
-import cl.ipp.centralizador.service.StageService;
-import cl.ipp.centralizador.service.SymptomService;
+import cl.ipp.centralizador.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +35,9 @@ public class CreateController {
 
     @Autowired
     private SymptomRepository symptomRepository;
+
+    @Autowired
+    private DiseaseService diseaseService;
 
     @GetMapping(path = "/agregarEnfermedad")
     public String agregarEnfermedad(Enfermedad enfermedad, Etapa etapa, Model model){
@@ -98,9 +95,8 @@ public class CreateController {
         }
     }
 
-
     @GetMapping(path = "/disease")
-    public String addDisease(Stage stage, Model model){
+    public String addDisease(Disease disease, Model model){
         model.addAttribute("clasifications", Clasification.values());
         model.addAttribute("stages", StageID.values());
         model.addAttribute("tipes", Tipe.values());
@@ -115,6 +111,19 @@ public class CreateController {
     public String saveStage(Stage stage){
         stageService.createStage(stage);
         return "redirect:/list/symptoms";
+    }
+
+    @PostMapping(path = "/saveDisease")
+    public String saveDisease(Disease disease){
+        // Se guarda la enfermedad primero
+        diseaseService.createDisease(disease);
+
+        for (Stage stage: disease.getDiseaseStage()){
+            stage.setDisease(disease);
+            stageService.createStage(stage);
+        }
+
+        return "redirect:/dashboard";
     }
 
     @Data

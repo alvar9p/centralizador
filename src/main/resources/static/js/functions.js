@@ -22,115 +22,71 @@ $(document).ready(function () {
   });
 });
 
-// Añadiendo etapas
-// formulario.js
 
 function generarFormulario() {
-  var cantidadEtapas = document.getElementById("cantidadEtapas").value;
-  var formularioEtapas = document.getElementById("formularioEtapas");
+    var cantidadDeEtapas = document.getElementById("numberOfStages").value;
+    var formularioEtapas = document.getElementById("stagesForm");
+    var symptomsSelect = document.getElementById("symptomName");
 
-  // Limpiar el formulario existente
-  formularioEtapas.innerHTML = "";
+    formularioEtapas.innerHTML = ""; // Limpiar el formulario existente
 
-  // Verificar si se seleccionó una cantidad válida
-  if (cantidadEtapas > 0) {
-    for (var i = 1; i <= cantidadEtapas; i++) {
-      var divEtapa = document.createElement("div");
-      var nombreEtapaValue = "ETAPA_0" + i;
-      divEtapa.innerHTML = `
-                <hr>
-                <h3>Etapa ${i}</h3>
-                <label for="etapasEnf[${
-                  i - 1
-                }].nombreIdentificador">Nombre Identificador:</label>
-                <input type="text" name="etapasEnf[${
-                  i - 1
-                }].nombreIdentificador" required/>
-                <br/>
+    if (cantidadDeEtapas > 0) {
+        for (var i = 1; i <= cantidadDeEtapas; i++) {
+            var divEtapa = document.createElement("div");
+            var nombreEtapa = "ETAPA_0" + i;
+            divEtapa.innerHTML = `
+              <hr>
+              <h3>Trabajando en Etapa ${i}</h3>
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].nombreEtapa" style="visibility: hidden;">Nombre Etapa ${i}:</label>
-                <input type="hidden" name="etapasEnf[${
-                  i - 1
-                }].nombreEtapa" value="${nombreEtapaValue}" />
+              <div class="col-6 mt-3">
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].descripcionEtapa">Descripción Etapa:</label>
-                <input type="text" name="etapasEnf[${
-                  i - 1
-                }].descripcionEtapa" required/>
-                <br/>
+                  <div class="form-floating mb-3">
+                      <input class="form-control" type="hidden" name="diseaseStage[${i - 1}].StageID" value="${nombreEtapa}" readonly />
+                      <label for="diseaseStage[${i - 1}].StageID" style="visibility: hidden;">Nombre Etapa ${i}:</label>
+                  </div>
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].duracionEtapa">Duración Etapa:</label>
-                <input type="number" id="duracionEtapa${i}" name="etapasEnf[${
-        i - 1
-      }].duracionEtapa" required onchange="calcularDuracionTotal()"/>
-                <br/>
+                  <div class="form-floating mb-3">
+                        <input class="form-control" type="text" name="diseaseStage[${i - 1}].stageIdentifier" />
+                        <label for="diseaseStage[${i - 1}].stageIdentifier">Nombre</label>
+                  </div>
 
-                <h4>Síntoma</h4>
-                <label for="etapasEnf[${
-                  i - 1
-                }].sintoma.sintoma">Síntoma:</label>
-                <input type="text" name="etapasEnf[${
-                  i - 1
-                }].sintoma.sintoma" required/>
-                <br/>
+                  <div class="form-floating mb-3">
+                        <input class="form-control" type="text" name="diseaseStage[${i - 1}].stageDesc" />
+                        <label for="diseaseStage[${i - 1}].stageDesc">Descripcion</label>
+                  </div>
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].sintoma.cuidados">Cuidados:</label>
-                <input type="text" name="etapasEnf[${
-                  i - 1
-                }].sintoma.cuidados" required/>
-                <br/>
+                  <div class="form-floating mb-3">
+                        <input class="form-control" type="number" name="diseaseStage[${i - 1}].duration" />
+                        <label for="diseaseStage[${i - 1}].duration">Duracion</label>
+                  </div>
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].sintoma.consideraciones">Consideraciones:</label>
-                <input type="text" name="etapasEnf[${
-                  i - 1
-                }].sintoma.consideraciones" required/>
-                <br/>
+              </div>
 
-                <label for="etapasEnf[${
-                  i - 1
-                }].sintoma.obligatoriedad">Obligatoriedad:</label>
-                <input type="checkbox" name="etapasEnf[${
-                  i - 1
-                }].sintoma.obligatoriedad"/>
-                <br/>
-            `;
+              <div class="col-6 mt-3">
+
+                   <div class="form-floating mb-3">
+                        <select id="symptomName" name="diseaseStage[${i - 1}].duration" required class="form-select">
+                            <option value="">Selecciona un síntoma...</option>
+                            <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}" th:text="${symptom.symptomName}"></option>
+                      </select>
+                      <label for="diseaseStage[${i - 1}].duration" class="form-label">Sintoma</label>
+                   </div>
+
+
+
+              </div>
+
+
+              <br>
+              <hr>
+
+      `;
       formularioEtapas.appendChild(divEtapa);
     }
   }
-  // Inicializar la duración total después de agregar todas las etapas
-  calcularDuracionTotal();
+
+  console.log("Cantidad de etapas selecionada: " + cantidadDeEtapas);
 }
 
-function calcularDuracionTotal() {
-  var duracionTotal = 0;
-  var cantidadEtapas = document.getElementById("cantidadEtapas").value;
-
-  // Sumar las duraciones de todas las etapas
-  for (var i = 1; i <= cantidadEtapas; i++) {
-    var duracionEtapa =
-      parseInt(document.getElementById(`duracionEtapa${i}`).value) || 0;
-    duracionTotal += duracionEtapa;
-  }
-
-  // Establecer la duración total en el campo fuera del formulario
-  document.getElementById("duracionEnf").value = duracionTotal;
-}
-
-// ************************************************************************ //
-
-function eliminarCampo(botonEliminar) {
-  var container = botonEliminar.parentElement;
-  container.removeChild(botonEliminar.previousElementSibling); // Eliminar el input
-  container.removeChild(botonEliminar); // Eliminar el botón "-"
-  container.removeChild(document.createElement("br")); // Eliminar el salto de línea
-}
+               // <label for="diseaseStage[${i - 1}].stageID">Nombre Etapa ${i}:</label>
+               // <input type="hidden" name="diseaseStage[${i - 1}].stageID" value="${diseaseStage.stageID}" />

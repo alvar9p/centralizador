@@ -23,5 +23,13 @@ public class StageService {
     public Iterable<Stage> listStages() {
         return stageRepository.findAll();
     }
+
+    public Stage findStageById(Stage stage){
+        return stageRepository.findById(stage.getIdStage()).orElse(null);
+    }
+
+    public void deleteById(Stage stage){
+        stageRepository.deleteById(stage.getIdStage());
+    }
 }
 

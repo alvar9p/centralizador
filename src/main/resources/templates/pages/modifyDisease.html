@@ -28,55 +28,156 @@
 
         <div class="col-12 mt-5">
 
-          <form th:action="@{/create/saveStage}" method="post" th:object="${stage}">
+          <form th:action="@{/create/saveDisease}" method="post" th:object="${disease}">
 
             <div class="row">
+
               <div class="col-6">
+                <div class="form-floating mb-4">
+                  <input class="form-control" type="text" name="diseaseName" th:field="*{diseaseName}" />
+                  <label for="diseaseName">Nombre de la enfermedad</label>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-floating mb-4">
+                  <input class="form-control" type="text" name="internalCode" th:field="*{internalCode}" />
+                  <label for="internalCode">Codigo enfermedad</label>
+                </div>
+              </div>
+
+              <div class="col-12">
 
                 <div class="form-floating mb-3">
-                  <input class="form-control" type="text" name="stageDesc" th:field="*{stageIdentifier}" />
-                  <label for="stageDesc">Nombre</label>
+                  <select class="form-select" id="clasificationDis" name="clasificationDis"
+                    th:field="*{diseaseClasification}">
+                    <option value="">Selecciona una opción</option>
+                    <option th:each="clasification : ${clasifications}" th:value="${clasification}"
+                      th:text="${clasification.label}"></option>
+                  </select>
+                  <label class="form-label" for="clasificationDis">Tipo de notificación requerida:</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                  <textarea class="form-control" type="text" name="stageDesc" th:field="*{stageDesc}" />
-                  <label for="stageDesc">Descripcion</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                  <input class="form-control" type="text" name="stageDuration" th:field="*{duration}" />
-                  <label for="stageDuration">Duracion total en dias</label>
+                  <select class="form-select" id="diseaseTipe" name="diseaseTipe" th:field="*{tipeOfDisease}">
+                    <option value="">Selecciona una opción</option>
+                    <option th:each="tipe : ${tipes}" th:value="${tipe}" th:text="${tipe.label}"></option>
+                  </select>
+                  <label class="form-label" for="diseaseTipe">Tipo de enfermedad:</label>
                 </div>
 
               </div>
 
               <div class="col-6">
+                <div class="form-floating mb-3">
+                  <select class="form-select" id="numberOfStages" th:field="*{diseaseStage.size}"
+                    onchange="generarFormulario()">
+                    <option value="0">Seleccione...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+                  <label class="form-label" for="numberOfStages">¿Cuantas etapas tiene esta enfermedad?</label>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="text" name="diseaseDuration" th:field="*{diseaseDuration}" readonly />
+                  <label for="diseaseDuration">Duracion enfermedad</label>
+                </div>
+              </div>
+
+              <hr>
+
+                <!-- Acá voy a generar el formulario -->
+                <div id="stagesForm"></div>
+
+
+              <!-- Fin de seccion Enfermedad -->
+
+              <hr>
+
+              <!-- Inicio de seccion Stage -->
+<!--
+
+              <div class="col-6 mt-3">
+
+                <div class="form-floating mb-3">
+                  <select class="form-select" id="diseaseTipe" name="stageID" th:field="*{diseaseStage[0].stageID}">
+                    <option value="">Selecciona una opción</option>
+                    <option th:each="stage : ${stages}" th:value="${stage}" th:text="${stage}"></option>
+                  </select>
+                  <label class="form-label" for="stageID">¿Que Etapa es?</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="text" name="diseaseStage[0].stageIdentifier"
+                    th:field="*{diseaseStage[0].stageIdentifier}" />
+                  <label for="stageIdentifier">Nombre</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" type="text" name="diseaseStage[0].stageDesc"
+                    th:field="*{diseaseStage[0].stageDesc}" />
+                  <label for="stageDesc">Descripcion</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" type="number" name="diseaseStage[0].duration"
+                    th:field="*{diseaseStage[0].duration}" />
+                  <label for="stageDuration">Duracion total en dias</label>
+                </div>
+
+              </div>
+
+               -->
+
+              <!-- Fin de seccion Enfermedad -->
+
+
+              <!-- Inicio de seccion Sintoma -->
+
+              <!--
+              <div class="col-6">
 
                 <div class="card">
                   <div class="card-body">
-                    <!-- Acá va el menu desplegable que tiene los sintomas -->
                     <div class="form-floating mb-3">
-                      <select id="symptomName" name="symptomName" required class="form-select" th:field="*{symptomName}">
+                      <select id="symptomName" name="symptomName" required class="form-select"
+                        th:field="*{diseaseStage[0].symptomName}">
                         <option value="">Selecciona un síntoma...</option>
-                        <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}" th:text="${symptom.symptomName}"></option>
+                        <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}"
+                          th:text="${symptom.symptomName}"></option>
                       </select>
                       <label for="symptomName" class="form-label">Sintoma</label>
                     </div>
 
 
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="caresInput" name="cares" th:field="*{symptomCare}" />
+                      <input type="text" class="form-control" id="caresInput" name="cares"
+                        th:field="*{diseaseStage[0].symptomCare}" />
                       <label for="cares" class="form-label">Cuidados:</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="considerationsInput" name="considerations" th:field="*{symptomConsideration}" />
+                      <input type="text" class="form-control" id="considerationsInput" name="considerations"
+                        th:field="*{diseaseStage[0].symptomConsideration}" />
                       <label for="considerations" class="form-label">Consideraciones:</label>
                     </div>
 
                   </div>
                 </div>
-              </div>
+              </div> -->
+
+              <!-- Fin de seccion Sintoma -->
+
             </div>
 
             <button type="submit" class="btn btn-primary" th:text="#{template.save}"></button>
@@ -92,6 +193,7 @@
     </div>
   </div>
 
+
   <script>
     // Obtener el valor del span
     var valorDelSpan = document.getElementById('cares').innerText;
@@ -99,7 +201,6 @@
     // Asignar el valor al input
     document.getElementById('caresInput').value = valorDelSpan;
   </script>
-
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
   <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
