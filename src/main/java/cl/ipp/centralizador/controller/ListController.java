@@ -19,41 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ListController {
 
     @Autowired
-    private EnfermedadService enfermedadService;
-
-    @Autowired
-    private EtapaService etapaService;
-
-    @Autowired
     private SymptomService symptomService;
 
     @Autowired
     private StageService stageService;
-
-    // *************************** ENFERMEDADES ***************************
-
-    @GetMapping("/diseases")
-    public String crearEnfermedadConEtapas(Model model) {
-               Iterable<Enfermedad> enfermedades = enfermedadService.listarEnfermedades();
-        model.addAttribute("enfermedades", enfermedades);
-        return "pages/listDiseases";
-    }
-
-    // *************************** ETAPAS ***************************
-
-    @GetMapping("/todasLasEtapas")
-    public String mostrarTodasLasEtapas(Model model){
-        Iterable<Etapa> etapas = etapaService.listarEtapas();
-        model.addAttribute("etapas", etapas);
-        return "listarTodasLasEtapas";
-    }
-
-
-    // Path variable
-    @GetMapping("/listarEtapaSegunId")
-    public String listarEtapaSegunId(){
-        return "listarEtapaSegunId";
-    }
 
     // *************************** SINTOMAS ***************************
 
@@ -64,20 +33,7 @@ public class ListController {
         return "pages/listSymptoms";
     }
 
-    @GetMapping("/test")
-    public String testView(){
-        return "pages/test";
-    }
-
-
-    // *************************** Test index ***************************
-
-    @GetMapping("index")
-    public String testIndex(){
-        return "pages/index";
-    }
-
-    // *************************** Etapas - Nuevo ***************************
+    // *************************** Etapas ***************************
 
     @GetMapping(path = "/stages")
     public String listAllStages(Model model){

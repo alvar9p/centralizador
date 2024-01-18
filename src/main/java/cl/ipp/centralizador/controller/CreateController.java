@@ -19,54 +19,17 @@ import java.util.List;
 @RequestMapping(path = "/create")
 public class CreateController {
 
-    // private final String CONTROLLER_PATH = "/create";
-
-    @Autowired
-    private EnfermedadService enfermedadService;
-
-    @Autowired
-    private EtapaService etapaService;
-
     @Autowired
     private SymptomService symptomService;
-
-    @Autowired
-    private StageService stageService;
 
     @Autowired
     private SymptomRepository symptomRepository;
 
     @Autowired
+    private StageService stageService;
+
+    @Autowired
     private DiseaseService diseaseService;
-
-    @GetMapping(path = "/agregarEnfermedad")
-    public String agregarEnfermedad(Enfermedad enfermedad, Etapa etapa, Model model){
-        model.addAttribute("clasificaciones", Clasification.values());
-        model.addAttribute("etapas", StageID.values());
-        model.addAttribute("tipos", Tipe.values());
-        return "modificarEnfermedad";
-    }
-
-    @PostMapping(path = "/guardarEnfermedad")
-    public String guardarEnfermedad(Enfermedad enfermedad){
-
-        // Primero, guarda la enfermedad
-        enfermedadService.crearEnfermedad(enfermedad);
-
-        // Luego, asigna la enfermedad a cada etapa y guárdalas
-        /*for (Etapa etapa : enfermedad.getEtapasEnf()) {
-            etapa.setEnfermedad(enfermedad);
-            etapaService.crearEtapa(etapa);
-        }*/
-
-        for (Etapa etapa : enfermedad.getEtapasEnf()) {
-            etapa.setEnfermedad(enfermedad);
-            etapaService.crearEtapa(etapa);
-
-        }
-
-        return "redirect:/index";
-    }
 
     // *************************** SINTOMAS ***************************
 
@@ -90,7 +53,7 @@ public class CreateController {
 
         if (symptom != null) {
             return new SymptomResponse(symptom.getCares(), symptom.getConsiderations());
-        }else {
+        } else {
             return new SymptomResponse("No se encontró el síntoma.", "");
         }
     }

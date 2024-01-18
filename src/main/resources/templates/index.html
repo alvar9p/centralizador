@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal</title>
+    <title>Título</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+
 <body>
 
-<h1>Pagina de inicio</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <aside>
+                <div th:replace="pages/common/sidebar :: sidebar"></div>
+            </aside>
+        </div>
 
-<a th:href="@{list/index}">Index test</a>
-<br>
-<br>
+        <div class="col-9">
+            <header class="row">
+                <div th:replace="pages/common/header :: header">
+                    <p th:text="#{template.title}"></p>
+                </div>
+            </header>
 
-<a th:href="@{/create/symptom}">Agregar un nuevo síntoma</a>
-<br>
-<br>
+            <div class="col-12 mt-5">
 
-<a th:href="@{/list/symptoms}">Listar solo sintomas</a>
-<br>
-<br>
+                <div class="mt-3 text-center">
 
-<a th:href="@{list/test}">Test divs dinamico para arrays</a>
-<br>
-<br>
+                    <hr>
+                    <h3>Este index esta fuera de la carpeta 'pages'</h3>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
 
 
-<br>
+    </div>
+</div>
 
-<a th:href="@{/create/agregarEnfermedad}">Agregar una nueva enfermedad</a>
-<br>
-
-<br>
-<a th:href="@{/list/diseases}">Listar solo enfermedades</a>
-<br>
-<br>
-<a th:href="@{/list/todasLasEtapas}">Listar solo etapas</a>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<a th:href="@{/listar/listarEtapaSegunId}">Listar etapas segun ID enfermedad</a>
+<script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
 </body>
+
 </html>

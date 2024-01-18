@@ -20,9 +20,6 @@ public class DeleteController {
     @Autowired
     private StageService stageService;
 
-    @Autowired
-    private EnfermedadService enfermedadService;
-
     @GetMapping(path = "/symptom/{idSymptom}")
     public String removeSymptom(Symptom symptom){
         symptomService.deleteSymptom(symptom);

@@ -26,7 +26,6 @@ $(document).ready(function () {
 function generarFormulario() {
     var cantidadDeEtapas = document.getElementById("numberOfStages").value;
     var formularioEtapas = document.getElementById("stagesForm");
-    var symptomsSelect = document.getElementById("symptomName");
 
     formularioEtapas.innerHTML = ""; // Limpiar el formulario existente
 
@@ -65,11 +64,7 @@ function generarFormulario() {
               <div class="col-6 mt-3">
 
                    <div class="form-floating mb-3">
-                        <select id="symptomName" name="diseaseStage[${i - 1}].duration" required class="form-select">
-                            <option value="">Selecciona un síntoma...</option>
-                            <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}" th:text="${symptom.symptomName}"></option>
-                      </select>
-                      <label for="diseaseStage[${i - 1}].duration" class="form-label">Sintoma</label>
+                        <p>Texto </p>
                    </div>
 
 
@@ -87,6 +82,3 @@ function generarFormulario() {
 
   console.log("Cantidad de etapas selecionada: " + cantidadDeEtapas);
 }
-
-               // <label for="diseaseStage[${i - 1}].stageID">Nombre Etapa ${i}:</label>
-               // <input type="hidden" name="diseaseStage[${i - 1}].stageID" value="${diseaseStage.stageID}" />
