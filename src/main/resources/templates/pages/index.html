@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <!-- Navbar -->
+            <aside>
+                <div th:replace="pages/common/sidebar :: sidebar"></div>
+            </aside>
+        </div>
+
+        <div class="col-9">
+
+            <header class="row">
+                <div th:replace="pages/common/header :: header">
+                </div>
+            </header>
+        </div>
+
+        <div class="col-12">
+            <div th:replace="pages/common/footer :: footer" class="col"></div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <aside>
+          <div th:replace="pages/common/sidebar :: sidebar"></div>
+        </aside>
+      </div>
+
+      <div class="col-9">
+        <header class="row">
+          <div th:replace="pages/common/header :: header">
+            <p th:text="#{template.title}"></p>
+          </div>
+        </header>
+
+        <div class="col-12 mt-5">
+
+          <form th:action="@{/create/saveDisease}" method="post" th:object="${disease}">
+
+            <div class="row">
+
+              <div class="col-6">
+                <div class="form-floating mb-4">
+                  <input class="form-control" type="text" name="diseaseName" th:field="*{diseaseName}" />
+                  <label for="diseaseName">Nombre de la enfermedad</label>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-floating mb-4">
+                  <input class="form-control" type="text" name="internalCode" th:field="*{internalCode}" />
+                  <label for="internalCode">Codigo enfermedad</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-floating mb-3">
+                  <select class="form-select" id="clasificationDis" name="clasificationDis"
+                    th:field="*{diseaseClasification}">
+                    <option value="">Selecciona una opción</option>
+                    <option th:each="clasification : ${clasifications}" th:value="${clasification}"
+                      th:text="${clasification.label}"></option>
+                  </select>
+                  <label class="form-label" for="clasificationDis">Tipo de notificación requerida:</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <select class="form-select" id="diseaseTipe" name="diseaseTipe" th:field="*{tipeOfDisease}">
+                    <option value="">Selecciona una opción</option>
+                    <option th:each="tipe : ${tipes}" th:value="${tipe}" th:text="${tipe.label}"></option>
+                  </select>
+                  <label class="form-label" for="diseaseTipe">Tipo de enfermedad:</label>
+                </div>
+
+              </div>
+
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <select class="form-select" id="numberOfStages" th:field="*{diseaseStage.size}"
+                    onchange="generarFormulario()">
+                    <option value="0">Seleccione...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+                  <label class="form-label" for="numberOfStages">¿Cuantas etapas tiene esta enfermedad?</label>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="text" name="diseaseDuration" th:field="*{diseaseDuration}" readonly />
+                  <label for="diseaseDuration">Duracion enfermedad</label>
+                </div>
+              </div>
+
+              <hr>
+
+                <!-- Formulario dinamico desde JS -->
+                <div id="stagesForm"></div>
+
+
+              <hr>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" th:text="#{template.save}"></button>
+
+          </form>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script th:inline="javascript">
+    var symptoms = /*[[${symptoms}]]*/ [];
+</script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+  <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/js/functions.js}"></script>
+</body>
+
+</html>

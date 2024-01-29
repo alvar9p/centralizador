@@ -1,69 +1,72 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos del Síntoma</title>
-
-    <script>
-        function addInput(containerId, fieldName) {
-            var container = document.getElementById(containerId);
-            var newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.name = fieldName + '[' + container.childElementCount + ']';
-            container.appendChild(document.createElement('br'));
-            container.appendChild(newInput);
-        }
-
-        // Agregar un campo de cuidado y una consideración iniciales al cargar la página
-        window.onload = function() {
-            addInput('caresContainer', 'cares');
-            addInput('considerationsContainer', 'considerations');
-        };
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Título</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
+
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <aside>
+                    <div th:replace="pages/common/sidebar :: sidebar"></div>
+                </aside>
+            </div>
 
-<h1>Síntoma</h1>
-<a th:href="@{/}">Regresar</a>
-<br/>
-<br/>
+            <div class="col-9">
+                <header class="row">
+                    <div th:replace="pages/common/header :: header">
+                        <p th:text="#{template.title}"></p>
+                    </div>
+                </header>
 
-<form th:action="@{/create/saveSymptom}" method="post" th:object="${symptom}" id="symptomForm">
 
-    <label for="symptomName">Nombre</label>
-    <input type="text" name="symptomName" th:field="*{symptomName}"/>
-    <br/>
+                <div class="row">
 
-    <label for="cares">Cuidados</label>
-    <div id="caresContainer">
-        <div th:each="care, iterStat : *{cares}">
-            <input type="text" th:field="*{cares[__${iterStat.index}__]}"/>
-            <br/>
+                    <div class="col-7 mt-5">
+                        <form th:action="@{/create/saveSymptom}" method="post" th:object="${symptom}" id="symptomForm">
+                            <input type="hidden" name="idSymptom" th:field="*{idSymptom}" />
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="text" name="symptomName" th:field="*{symptomName}" />
+                                <label for="symptomName" th:text="#{template.name}"></label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" type="text" name="symptonCare" th:field="*{cares}"></textarea>
+                                <label for="symptonCare" th:text="#{symptom.cares}"></label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" type="text" name="symptonCons" th:field="*{considerations}"></textarea>
+                                <label for="symptonCons" th:text="#{symptom.considerations}"></label>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary" th:text="#{template.save}"></button>
+
+                        </form>
+                    </div>
+
+                    <div class="col-5 mt-5">
+                        <p th:text="#{symptom.noteHeader}"></p>
+                        <p th:text="#{symptom.noteBody}"></p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <button type="button" onclick="addInput('caresContainer', 'cares')">Añadir otro cuidado</button>
     </div>
-    <br/>
 
-    <label for="considerations">Consideraciones</label>
-    <div id="considerationsContainer">
-        <div th:each="consideration, iterStat : *{considerations}">
-            <input type="text" th:field="*{considerations[__${iterStat.index}__]}"/>
-            <br/>
-        </div>
-        <button type="button" onclick="addInput('considerationsContainer', 'considerations')">Añadir otra consideración</button>
-    </div>
-    <br/>
-
-    <input type="submit" name="save" value="Guardar"/>
-
-</form>
-
-<br/>
-
-<form th:action="@{/index}" method="get">
-    <button type="submit">Volver a inicio</button>
-</form>
-
+    <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/functions.js}"></script>
 </body>
+
 </html>

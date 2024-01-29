@@ -1,6 +1,6 @@
 package cl.ipp.centralizador.model.person;
 
-import cl.ipp.centralizador.model.Disease.Enfermedad;
+import cl.ipp.centralizador.model.disease.Enfermedad;
 import lombok.*;
 
 import java.util.Date;

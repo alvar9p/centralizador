@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datos de la Enfermedad</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de la Enfermedad</title>
+    <script th:src="@{/formularioAgregar.js}"></script>
 </head>
 <body>
     
@@ -22,15 +23,15 @@
       <input type="text" name="nombre_enf" th:field="*{nombreEnfermedad}"/>
       <br/>
 
-      <label for="clasificacionEnfermedad">Tipo de notificación requerida:</label>
-      <select id="clasificacionEnfermedad" name="clasificacionEnfermedad" required>
+      <label for="clasificationEnfermedad">Tipo de notificación requerida:</label>
+      <select id="clasificationEnfermedad" name="clasificationEnfermedad" required>
         <option value="">Selecciona una opción</option>
         <option th:each="clasificacion : ${clasificaciones}" th:value="${clasificacion}" th:text="${clasificacion.label}"></option>
       </select>
       <br/>
 
-      <label for="tipoEnfermedad">Tipo de enfermedad:</label>
-      <select id="tipoEnfermedad" name="tipoEnfermedad" required>
+      <label for="tipeEnfermedad">Tipo de enfermedad:</label>
+      <select id="tipeEnfermedad" name="tipeEnfermedad" required>
         <option value="">Selecciona una opción</option>
         <option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.label}"></option>
       </select>
@@ -63,8 +64,6 @@
       <br/>
       <br/>
     </form>
-
-    <script src="/formularioAgregar.js"></script>
 
     <br/>
 
