@@ -95,88 +95,11 @@
 
               <hr>
 
-                <!-- Acá voy a generar el formulario -->
+                <!-- Formulario dinamico desde JS -->
                 <div id="stagesForm"></div>
 
 
-              <!-- Fin de seccion Enfermedad -->
-
               <hr>
-
-              <!-- Inicio de seccion Stage -->
-<!--
-
-              <div class="col-6 mt-3">
-
-                <div class="form-floating mb-3">
-                  <select class="form-select" id="diseaseTipe" name="stageID" th:field="*{diseaseStage[0].stageID}">
-                    <option value="">Selecciona una opción</option>
-                    <option th:each="stage : ${stages}" th:value="${stage}" th:text="${stage}"></option>
-                  </select>
-                  <label class="form-label" for="stageID">¿Que Etapa es?</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                  <input class="form-control" type="text" name="diseaseStage[0].stageIdentifier"
-                    th:field="*{diseaseStage[0].stageIdentifier}" />
-                  <label for="stageIdentifier">Nombre</label>
-                </div>
-
-
-                <div class="form-floating mb-3">
-                  <textarea class="form-control" type="text" name="diseaseStage[0].stageDesc"
-                    th:field="*{diseaseStage[0].stageDesc}" />
-                  <label for="stageDesc">Descripcion</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                  <textarea class="form-control" type="number" name="diseaseStage[0].duration"
-                    th:field="*{diseaseStage[0].duration}" />
-                  <label for="stageDuration">Duracion total en dias</label>
-                </div>
-
-              </div>
-
-               -->
-
-              <!-- Fin de seccion Enfermedad -->
-
-
-              <!-- Inicio de seccion Sintoma -->
-
-              <!--
-              <div class="col-6">
-
-                <div class="card">
-                  <div class="card-body">
-                    <div class="form-floating mb-3">
-                      <select id="symptomName" name="symptomName" required class="form-select"
-                        th:field="*{diseaseStage[0].symptomName}">
-                        <option value="">Selecciona un síntoma...</option>
-                        <option th:each="symptom : ${symptoms}" th:value="${symptom.idSymptom}"
-                          th:text="${symptom.symptomName}"></option>
-                      </select>
-                      <label for="symptomName" class="form-label">Sintoma</label>
-                    </div>
-
-
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="caresInput" name="cares"
-                        th:field="*{diseaseStage[0].symptomCare}" />
-                      <label for="cares" class="form-label">Cuidados:</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="considerationsInput" name="considerations"
-                        th:field="*{diseaseStage[0].symptomConsideration}" />
-                      <label for="considerations" class="form-label">Consideraciones:</label>
-                    </div>
-
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- Fin de seccion Sintoma -->
 
             </div>
 
@@ -194,13 +117,9 @@
   </div>
 
 
-  <script>
-    // Obtener el valor del span
-    var valorDelSpan = document.getElementById('cares').innerText;
-
-    // Asignar el valor al input
-    document.getElementById('caresInput').value = valorDelSpan;
-  </script>
+  <script th:inline="javascript">
+    var symptoms = /*[[${symptoms}]]*/ [];
+</script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
   <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
