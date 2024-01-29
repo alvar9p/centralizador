@@ -1,6 +1,5 @@
 package cl.ipp.centralizador.model.person;
 
-import cl.ipp.centralizador.model.disease.Enfermedad;
 import lombok.*;
 
 import java.util.Date;
@@ -11,7 +10,7 @@ import java.util.Date;
 public class Paciente extends Persona{
 
         private Integer id;
-        private Enfermedad enfermedad;
+        //private Enfermedad enfermedad;
         private int idEnfermedad;
         private int idEtapa;
         private String nombre;
