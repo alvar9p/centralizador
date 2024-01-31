@@ -28,14 +28,86 @@
 
                 <div class="row">
 
-                    <div class="col-7 mt-5">
+                    <div class="row mt-5">
+
+                        <div class="col-9">
+                            <div class="card">
+                                <img class="card-img-top" src="img/bg.jpg" alt="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="#{symptom.noteHeader}"></p>
+                                    <p class="card-text" th:text="#{symptom.noteBody}"></p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <!-- Modal como link -->
+                                    <a class="btn btn-light btn-sm" data-bs-toggle="modal"
+                                       data-bs-target="#sintomas-modal" th:text="#{template.extraInfo}"></a>
+                                </div>
+
+                                <div class="modal fade" id="sintomas-modal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <div class="col">
+                                                    <p class="fw-normal mb-0 mt-0" th:text="#{symptom.nameOf}"></p>
+                                                    <p class="fw-light mb-0 mt-0" th:text="#{symptom.nameOfDesc}"></p>
+                                                </div>
+
+                                                <div class="col mt-3">
+                                                    <p class="fw-normal mb-0 mt-0" th:text="#{symptom.cares}"></p>
+                                                    <p class="fw-light mb-0 mt-0" th:text="#{symptom.caresDesc}"></p>
+                                                </div>
+
+                                                <div class="col mt-3">
+                                                    <p class="fw-normal mb-0 mt-0" th:text="#{symptom.considerations}"></p>
+                                                    <p class="fw-light mb-0 mt-0" th:text="#{symptom.considerationsDesc}"></p>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="carousel slide carousel-fade align-items-center" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="5000">
+                                        <img class="img-fluid img-thumbnail" th:src="@{/img/symptoms/diabetes.png}" alt="" width="230px" height="230px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="img-fluid img-thumbnail" th:src="@{/img/symptoms/flu.jpg}" alt="" width="270px" height="270px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-12 mt-2">
+                        <hr>
+                        <h5 class="h5" th:text="#{symptom.formTitle}"></h5>
+                    </div>
+
+
+                    <div class="col-12 mt-2">
                         <form th:action="@{/create/saveSymptom}" method="post" th:object="${symptom}" id="symptomForm">
                             <input type="hidden" name="idSymptom" th:field="*{idSymptom}" />
+
 
                             <div class="form-floating mb-3">
                                 <input class="form-control" type="text" name="symptomName" th:field="*{symptomName}" />
                                 <label for="symptomName" th:text="#{template.name}"></label>
                             </div>
+
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" type="text" name="symptonCare" th:field="*{cares}"></textarea>
@@ -53,10 +125,6 @@
                         </form>
                     </div>
 
-                    <div class="col-5 mt-5">
-                        <p th:text="#{symptom.noteHeader}"></p>
-                        <p th:text="#{symptom.noteBody}"></p>
-                    </div>
                 </div>
 
             </div>
