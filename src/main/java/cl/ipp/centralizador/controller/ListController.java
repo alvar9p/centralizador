@@ -1,7 +1,9 @@
 package cl.ipp.centralizador.controller;
 
+import cl.ipp.centralizador.model.disease.Disease;
 import cl.ipp.centralizador.model.disease.Stage;
 import cl.ipp.centralizador.model.disease.Symptom;
+import cl.ipp.centralizador.service.DiseaseService;
 import cl.ipp.centralizador.service.StageService;
 import cl.ipp.centralizador.service.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ListController {
     @Autowired
     private StageService stageService;
 
+    @Autowired
+    DiseaseService diseaseService;
+
     // *************************** SINTOMAS ***************************
 
     @GetMapping("/symptoms")
@@ -36,6 +41,15 @@ public class ListController {
         Iterable<Stage> stages = stageService.listStages();
         model.addAttribute("stages", stages);
         return "pages/listStages";
+    }
+
+    // *************************** Enfermedades ***************************
+
+    @GetMapping(path = "/diseases")
+    public String listAllDiseases(Model model){
+        Iterable<Disease> diseases = diseaseService.listDiseases();
+        model.addAttribute("diseases", diseases);
+        return "pages/listDiseases";
     }
 
 }

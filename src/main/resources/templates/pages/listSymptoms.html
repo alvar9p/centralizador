@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Título</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
   <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Título</title>
 </head>
 
 <body>
@@ -28,33 +28,117 @@
           </div>
         </header>
 
-        <div class="col-12 mt-5">
+        <div class="row">
 
-          <div class="table-responsive mt-3">
-            <table class="table table-striped table-hover table-bordered">
-              <thead>
-                <tr class="table-primary">
-                  <!-- <th>ID</th> -->
+          <div class="row mt-5">
+
+            <!-- Barra con imágenes de los sintomas -->
+
+            <div class="col-3 justify-content-center">
+              <div th:replace="pages/common/symptom/images :: images">
+
+              </div>
+
+
+              <!--
+              <div class="carousel slide carousel-fade align-items-center" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="5000">
+                    <img class="img-fluid img-thumbnail" th:src="@{/img/symptoms/diabetes.png}" alt="" width="230px" height="230px">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="img-fluid img-thumbnail" th:src="@{/img/symptoms/flu.jpg}" alt="" width="270px" height="270px">
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+            <div class="col-9">
+              <div class="card">
+                <img class="card-img-top" src="img/bg.jpg" alt="">
+                <div class="card-body">
+                  <p class="card-text" th:text="#{symptom.noteHeader}"></p>
+                  <p class="card-text" th:text="#{symptom.noteBody}"></p>
+                </div>
+                <div class="card-footer text-center">
+                  <!-- Modal como link -->
+                  <a class="btn btn-light btn-sm" data-bs-toggle="modal"
+                     data-bs-target="#sintomas-modal" th:text="#{template.extraInfo}"></a>
+                </div>
+
+                <div class="modal fade" id="sintomas-modal" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="col">
+                          <p class="fw-normal mb-0 mt-0" th:text="#{symptom.nameOf}"></p>
+                          <p class="fw-light mb-0 mt-0" th:text="#{symptom.nameOfDesc}"></p>
+                        </div>
+
+                        <div class="col mt-3">
+                          <p class="fw-normal mb-0 mt-0" th:text="#{symptom.cares}"></p>
+                          <p class="fw-light mb-0 mt-0" th:text="#{symptom.caresDesc}"></p>
+                        </div>
+
+                        <div class="col mt-3">
+                          <p class="fw-normal mb-0 mt-0" th:text="#{symptom.considerations}"></p>
+                          <p class="fw-light mb-0 mt-0" th:text="#{symptom.considerationsDesc}"></p>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Viene la tabla -->
+
+            <div class="col-12 mt-5">
+
+              <table class="table table-striped table-hover table-bordered caption-top">
+                <caption>Lista de sintomas</caption>
+                <thead>
+                <tr class="table-primary text-center">
                   <th th:text="#{symptom.name}"></th>
                   <th th:text="#{symptom.cares}"></th>
                   <th th:text="#{symptom.considerations}"></th>
                   <th th:text="#{template.edit}"></th>
                   <th th:text="#{template.delete}"></th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="symptoms : ${symptoms}">
-                  <!-- <td th:text="${symptoms.idSymptom}"></td> -->
                   <td th:text="${symptoms.symptomName}"></td>
                   <td th:text="${symptoms.cares}"></td>
                   <td th:text="${symptoms.considerations}"></td>
-                  <td><a th:href="@{/edit/symptom/} + ${symptoms.idSymptom}" th:text="#{template.edit}"/></td>
-                  <td><a th:href="@{/delete/symptom/} + ${symptoms.idSymptom}" th:text="#{template.delete}"/></td>
-              </tbody>
-            </table>
+                  <td>
+                    <a class="link-primary d-flex justify-content-center text-decoration-none"
+                       th:href="@{/edit/symptom/} + ${symptoms.idSymptom}"/>
+                    <i class="fa fa-pencil-square-o mt-1" aria-hidden="true"></i>
+                  </td>
+                  <td>
+                    <a class="link-danger d-flex justify-content-center text-decoration-none"
+                       th:href="@{/delete/symptom/} + ${symptoms.idSymptom}"/>
+                    <i class="fa fa-times mt-1" aria-hidden="true"></i>
+                  </td>
+                </tbody>
+              </table>
+
+            </div>
+
           </div>
 
         </div>
+
+
 
         <div class="col">
           <div th:replace="pages/common/footer :: footer" class="col">

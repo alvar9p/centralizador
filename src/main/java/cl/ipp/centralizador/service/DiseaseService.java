@@ -22,4 +22,12 @@ public class DiseaseService {
     public Iterable<Disease> listDiseases(){
         return diseaseRepository.findAll();
     }
+
+    public Disease findDiseaseById(Disease disease){
+        return diseaseRepository.findById(disease.getIdDisease()).orElse(null);
+    }
+
+    public void deleteById(Disease disease){
+        diseaseRepository.deleteById(disease.getIdDisease());
+    }
 }

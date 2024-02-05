@@ -1,55 +1,78 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mostrar Enfermedades</title>
+  <title>Título</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+
 <body>
 
-<h2>Listado de Enfermedades</h2>
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <aside>
+        <div th:replace="pages/common/sidebar :: sidebar"></div>
+      </aside>
+    </div>
 
-<h3>Iterando todas las enfermedades</h3>
-<h3>return "pages/diseases"</h3>
+    <div class="col-9">
+      <header class="row">
+        <div th:replace="pages/common/header :: header">
+          <p th:text="#{template.title}"></p>
+        </div>
+      </header>
 
-<table border="1">
-  
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Código</th>
-    <th>Nombre</th>
-    <th>Tipo notificación</th>
-    <th>Tipo enfermedad</th>
-    <th>Duración</th>
-    <th>Detalles</th>
-    <th>Editar</th>
-    <th>Eliminar</th>
-  
-  </tr>
+      <div class="col-12 mt-5">
 
-  </thead>
-  <tbody>
-  <tr th:each="enfermedad : ${enfermedades}">
-    <td th:text="${enfermedad.idEnf}"></td>
-    <td th:text="${enfermedad.codigoEnf}"></td>
-    <td th:text="${enfermedad.nombreEnfermedad}"></td>
-    <td th:text="${enfermedad.clasificationEnfermedad}"></td>
-    <td th:text="${enfermedad.tipeEnfermedad}"></td>
-    <td th:text="${enfermedad.duracionEnfermedad}"></td>
-    <td>LINK PARA VER ETAPAS - DIAGNOSTICO</td>
-    <td><a th:href="@{/editar/} + ${enfermedad.idEnf}" th:text="Editar"/></td>
-    <td><a th:href="@{/eliminar/} + ${enfermedad.idEnf}" th:text="Eliminar"/></td>
-  </tbody>
-</table>
+        <table class="table table-striped table-hover table-bordered caption-top">
+            <caption>Listado de enfermedades</caption>
+            <thead>
+            <tr class="table-primary text-center">
+              <th th:text="#{disease.internalCode}"></th>
+              <th th:text="#{disease.name}"></th>
+              <th th:text="#{disease.clasification}"></th>
+              <th th:text="#{disease.tipe}"></th>
+              <th th:text="#{disease.duration}"></th>
+              <!-- <th th:text="#{disease.numbOfStages}"></th> -->
+              <th th:text="#{template.edit}"></th>
+              <th th:text="#{template.delete}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="disease : ${diseases}">
+              <td th:text="${disease.internalCode}"></td>
+              <td th:text="${disease.diseaseName}"></td>
+              <td th:text="${disease.diseaseClasification}"></td>
+              <td th:text="${disease.tipeOfDisease}"></td>
+              <td th:text="${disease.diseaseDuration}"></td>
+              <!-- <td th:text="${disease.diseaseStage}"></td> -->
 
-<br>
-<br>
+              <td>
+                <a class="link-primary d-flex justify-content-center text-decoration-none"
+                   th:href="@{/edit/disease/} + ${disease.idDisease}"/>
+                <i class="fa fa-pencil-square-o mt-1" aria-hidden="true"></i>
+              </td>
+              <td>
+                <a class="link-danger d-flex justify-content-center text-decoration-none"
+                   th:href="@{/delete/disease/} + ${disease.idDisease}"/>
+                <i class="fa fa-times mt-1" aria-hidden="true"></i>
+              </td>
+            </tbody>
+          </table>
 
-<form th:action="@{/index}" method="get">
-    <button type="submit">Volver a inicio</button>
-</form>
+      </div>
+    </div>
 
+
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/4fb56b437e.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
 </body>
+
 </html>

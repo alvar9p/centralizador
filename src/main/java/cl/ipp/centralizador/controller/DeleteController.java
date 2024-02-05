@@ -1,7 +1,9 @@
 package cl.ipp.centralizador.controller;
 
+import cl.ipp.centralizador.model.disease.Disease;
 import cl.ipp.centralizador.model.disease.Stage;
 import cl.ipp.centralizador.model.disease.Symptom;
+import cl.ipp.centralizador.service.DiseaseService;
 import cl.ipp.centralizador.service.StageService;
 import cl.ipp.centralizador.service.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class DeleteController {
     @Autowired
     private StageService stageService;
 
+    @Autowired
+    private DiseaseService diseaseService;
+
     @GetMapping(path = "/symptom/{idSymptom}")
     public String removeSymptom(Symptom symptom){
         symptomService.deleteSymptom(symptom);
@@ -29,6 +34,12 @@ public class DeleteController {
     public String removeStage(Stage stage){
         stageService.deleteById(stage);
         return "redirect:/list/stages";
+    }
+
+    @GetMapping(path = "/disease/{idDisease}")
+    public String removeDisease(Disease disease){
+        diseaseService.deleteById(disease);
+        return "redirect:/list/diseases";
     }
 
 

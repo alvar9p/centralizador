@@ -1,7 +1,9 @@
 package cl.ipp.centralizador.controller;
 
+import cl.ipp.centralizador.model.disease.Disease;
 import cl.ipp.centralizador.model.disease.Stage;
 import cl.ipp.centralizador.model.disease.Symptom;
+import cl.ipp.centralizador.service.DiseaseService;
 import cl.ipp.centralizador.service.StageService;
 import cl.ipp.centralizador.service.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class EditController {
     @Autowired
     private StageService stageService;
 
+    @Autowired
+    private DiseaseService diseaseService;
+
     @GetMapping(path = "/symptom/{idSymptom}")
     public String editSymptom(Symptom symptom, Model model){
         symptom = symptomService.findSymptomById(symptom);
@@ -32,6 +37,13 @@ public class EditController {
         stage = stageService.findStageById(stage);
         model.addAttribute("stage", stage);
         return "pages/modifyStage";
+    }
+
+    @GetMapping(path = "/disease/{idDisease}")
+    public String editDisease(Disease disease, Model model){
+        disease = diseaseService.findDiseaseById(disease);
+        model.addAttribute("disease", disease);
+        return "pages/modifyDisease";
     }
 
 
